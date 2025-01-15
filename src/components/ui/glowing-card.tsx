@@ -21,7 +21,7 @@ export function GridBackground({
   return (
     <div 
       className={cn(
-        'px-10 py-20 rounded-md relative mx-18 flex items-center justify-center',
+        'px-6 py-8 rounded-md relative mx-4 flex items-center justify-center',
         className
       )}
       style={{
@@ -50,9 +50,9 @@ export function GridBackground({
       />
 
       <div className="relative z-20 text-center max-w-7xl">
-        <h1 className='text-6xl font-bold'>{title}</h1>
+        <h1 className='text-3xl font-bold'>{title}</h1>
         {description && (
-          <p className='text-md mt-5 text-gray-300'>{description}</p>
+          <p className='text-sm mt-3 text-gray-300'>{description}</p>
         )}
 
         {children}
