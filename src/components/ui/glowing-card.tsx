@@ -8,6 +8,7 @@ interface GridBackgroundProps {
   description: string
   showAvailability?: boolean
   className?: string
+  children?: React.ReactNode
 }
 
 export function GridBackground({
@@ -15,6 +16,7 @@ export function GridBackground({
   description,
   showAvailability = true,
   className,
+  children
 }: GridBackgroundProps) {
   return (
     <div 
@@ -52,6 +54,8 @@ export function GridBackground({
         {description && (
           <p className='text-md mt-5 text-gray-300'>{description}</p>
         )}
+
+        {children}
 
         {showAvailability && (
           <div className="available-now text-[#20bb5a] text-sm flex items-center justify-center mt-5">
