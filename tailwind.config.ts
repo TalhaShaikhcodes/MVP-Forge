@@ -69,9 +69,29 @@ export default {
             opacity: "0.7",
           },
         },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-20px)",
+          },
+        },
+        "pulse-soft": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            opacity: "0.9",
+          },
+          "50%": {
+            transform: "scale(1.05)",
+            opacity: "0.7",
+          },
+        },
       },
       animation: {
         "glow-pulse": "glow-pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 4s ease-in-out infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
