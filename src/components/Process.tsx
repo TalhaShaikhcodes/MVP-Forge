@@ -15,10 +15,7 @@ const Process = () => {
       const windowHeight = window.innerHeight;
       const scrollPosition = window.scrollY;
 
-      // Calculate how far we've scrolled into the section
       const scrollIntoSection = scrollPosition - sectionTop + windowHeight;
-      
-      // Calculate progress as a percentage
       const progress = Math.min(
         Math.max(scrollIntoSection / sectionHeight, 0),
         1
@@ -28,7 +25,7 @@ const Process = () => {
     };
 
     window.addEventListener("scroll", calculateProgress);
-    calculateProgress(); // Initial calculation
+    calculateProgress();
 
     return () => window.removeEventListener("scroll", calculateProgress);
   }, []);
@@ -63,7 +60,7 @@ const Process = () => {
 
   return (
     <section ref={sectionRef} className="py-20 px-4 md:px-8 relative">
-      <div className="max-w-4xl mx-auto relative">
+      <div className="max-w-3xl mx-auto relative">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
         </h2>
@@ -82,7 +79,7 @@ const Process = () => {
           {steps.map((step, index) => (
             <Card
               key={index}
-              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden"
+              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden min-h-[200px]"
             >
               <BorderTrail
                 className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
@@ -91,13 +88,13 @@ const Process = () => {
                   boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
                 }}
               />
-              <div className="p-6 relative z-10">
+              <div className="p-8 relative z-10">
                 <div className="flex items-start gap-4">
                   <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
                     {step.number}
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
+                    <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-glow">
                       {step.title}
                     </h3>
                     <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
