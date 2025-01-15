@@ -1,7 +1,38 @@
 import { Card } from "@/components/ui/card";
 import { BorderTrail } from "@/components/ui/border-trail";
+import { useEffect, useRef, useState } from "react";
 
 const Process = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const calculateProgress = () => {
+      if (!sectionRef.current) return;
+
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+
+      // Calculate how far we've scrolled into the section
+      const scrollIntoSection = scrollPosition - sectionTop + windowHeight;
+      
+      // Calculate progress as a percentage
+      const progress = Math.min(
+        Math.max(scrollIntoSection / sectionHeight, 0),
+        1
+      ) * 100;
+
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", calculateProgress);
+    calculateProgress(); // Initial calculation
+
+    return () => window.removeEventListener("scroll", calculateProgress);
+  }, []);
+
   const steps = [
     {
       title: "Idea Discovery",
@@ -31,7 +62,18 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-8">
+    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative">
+      {/* Progress Bar */}
+      <div className="hidden lg:block fixed left-[15%] top-1/2 -translate-y-1/2 h-[60vh] w-1 bg-gray-800 rounded-full">
+        <div 
+          className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo rounded-full transition-all duration-300 ease-out"
+          style={{ 
+            height: `${scrollProgress}%`,
+            boxShadow: "0 0 20px rgba(6, 182, 212, 0.5)",
+          }}
+        />
+      </div>
+
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
