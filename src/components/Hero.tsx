@@ -1,0 +1,31 @@
+import { Button } from "@/components/ui/button";
+
+const Hero = () => {
+  return (
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background gradient effects */}
+      <div className="absolute inset-0 bg-gradient-radial from-custom-cyan/20 via-transparent to-transparent animate-glow-pulse" />
+      <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-custom-blue/20 rounded-full blur-3xl animate-glow-pulse" />
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text">
+            Transforming Ideas Into
+            <span className="block text-glow">Digital Excellence</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            We craft cutting-edge digital solutions that elevate your brand and drive real business results.
+          </p>
+          <Button 
+            className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-opacity duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow"
+          >
+            Get Started
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
