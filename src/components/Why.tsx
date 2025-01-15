@@ -39,7 +39,7 @@ const WhySection = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 hover:glow group"
+              className="bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 hover:glow group relative before:absolute before:inset-0 before:-z-10 before:p-[2px] before:bg-gradient-to-r before:from-custom-cyan before:via-custom-blue before:to-custom-indigo before:rounded-lg before:animate-border-glow before:opacity-0 hover:before:opacity-100"
             >
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
