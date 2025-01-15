@@ -11,8 +11,8 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text">
-            First Version of Your Dream
-            <span className="block text-glow">In 2 weeks</span>
+            First Version of Your
+            <span className="block text-glow">Dream In 2 weeks</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             We craft cutting-edge digital solutions that elevate your brand and drive real business results.
