@@ -64,12 +64,12 @@ const Process = () => {
   return (
     <section ref={sectionRef} className="py-20 px-4 md:px-8 relative">
       {/* Progress Bar */}
-      <div className="hidden lg:block fixed left-[15%] top-1/2 -translate-y-1/2 h-[60vh] w-1 bg-gray-800 rounded-full">
+      <div className="hidden lg:block absolute left-[15%] top-0 h-full w-3 bg-gray-800 rounded-full">
         <div 
           className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo rounded-full transition-all duration-300 ease-out"
           style={{ 
             height: `${scrollProgress}%`,
-            boxShadow: "0 0 20px rgba(6, 182, 212, 0.5)",
+            boxShadow: "0 0 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
           }}
         />
       </div>
