@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { BorderTrail } from "@/components/ui/border-trail";
+import { GridBackground } from "@/components/ui/glowing-card";
 
 const MyWork = () => {
   const projects = [
@@ -29,44 +29,31 @@ const MyWork = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card
+            <GridBackground
               key={index}
-              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 overflow-hidden group"
+              title={project.title}
+              description={project.description}
+              showAvailability={false}
+              className="group transform hover:scale-105 transition-all duration-300"
             >
-              <BorderTrail
-                className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
-                size={120}
-                style={{
-                  boxShadow:
-                    "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-                }}
-              />
-              <CardContent className="p-6">
-                <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.imageAlt}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-2 py-1 text-sm rounded-full bg-custom-cyan/10 text-custom-cyan border border-custom-cyan/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+              <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                <img
+                  src={project.imageUrl}
+                  alt={project.imageAlt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tags.map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="px-2 py-1 text-sm rounded-full bg-custom-cyan/10 text-custom-cyan border border-custom-cyan/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </GridBackground>
           ))}
         </div>
       </div>
