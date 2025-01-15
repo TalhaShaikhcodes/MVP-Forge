@@ -67,9 +67,9 @@ const Process = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
         </h2>
-        <div className="space-y-6 relative">
+        <div className="space-y-12 relative">
           {/* Progress Bar */}
-          <div className="hidden lg:block absolute -right-16 top-0 h-full w-3 bg-gray-800 rounded-full">
+          <div className="hidden lg:block absolute -right-16 top-0 h-[150%] w-1.5 bg-gray-800 rounded-full">
             <div 
               className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo rounded-full transition-all duration-300 ease-out"
               style={{ 
@@ -80,33 +80,45 @@ const Process = () => {
           </div>
 
           {steps.map((step, index) => (
-            <Card
-              key={index}
-              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden"
-            >
-              <BorderTrail
-                className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
-                size={120}
-                style={{
-                  boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-                }}
-              />
-              <div className="p-6 relative z-10">
-                <div className="flex items-start gap-4">
-                  <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
-                    {step.number}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                      {step.description}
-                    </p>
+            <div key={index} className="relative">
+              <Card
+                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden"
+              >
+                <BorderTrail
+                  className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
+                  size={120}
+                  style={{
+                    boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
+                  }}
+                />
+                <div className="p-6 relative z-10">
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
+                      {step.number}
+                    </span>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+              
+              {/* Connecting Node */}
+              {index < steps.length - 1 && (
+                <div 
+                  className="hidden lg:block absolute -right-[60px] bottom-0 w-2 h-2 rounded-full bg-custom-cyan/30"
+                  style={{
+                    boxShadow: "0 0 10px 5px rgba(6, 182, 212, 0.15)",
+                    transform: "translateY(50%)"
+                  }}
+                />
+              )}
+            </div>
           ))}
         </div>
       </div>
