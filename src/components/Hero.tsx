@@ -15,7 +15,7 @@ const Hero = () => {
             <span className="block text-glow">Dream In 2 weeks</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            We craft cutting-edge digital solutions that elevate your brand and drive real business results.
+            While others are still planning, your fully functional MVP will be live and gathering real user feedback. From wireframes to working product in just 2 weeks.
           </p>
           <Button 
             className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-opacity duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow"
