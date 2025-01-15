@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import WhySection from "@/components/Why";
-import Process from "@/components/Process";
 import MyWork from "@/components/MyWork";
+import Process from "@/components/Process";
 
 const Index = () => {
   return (
