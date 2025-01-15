@@ -35,7 +35,7 @@ const WhySection = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Why Choose Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <Card
               key={index}
