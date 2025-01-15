@@ -1,5 +1,6 @@
 import { Rocket, DollarSign, Target, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { BorderTrail } from "@/components/ui/border-trail";
 
 const WhySection = () => {
   const features = [
@@ -39,8 +40,16 @@ const WhySection = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 hover:glow group"
+              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 group"
             >
+              <BorderTrail
+                className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
+                size={120}
+                style={{
+                  boxShadow:
+                    "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
+                }}
+              />
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-4 p-3 rounded-full border border-custom-cyan/20 group-hover:border-custom-cyan transition-colors">
