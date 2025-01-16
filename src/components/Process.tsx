@@ -1,9 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { BorderTrail } from "@/components/ui/border-trail";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Process = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentDay, setCurrentDay] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -22,6 +24,10 @@ const Process = () => {
       ) * 100;
 
       setScrollProgress(progress);
+      
+      // Calculate current day based on scroll progress (1-14)
+      const day = Math.min(Math.max(Math.ceil((progress / 100) * 14), 1), 14);
+      setCurrentDay(day);
     };
 
     window.addEventListener("scroll", calculateProgress);
@@ -64,18 +70,27 @@ const Process = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
         </h2>
-        <div className="space-y-6 relative">
-          {/* Progress Bar */}
-          <div className="hidden lg:block absolute -right-16 top-0 h-full w-3 bg-gray-800 rounded-full">
-            <div 
-              className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo rounded-full transition-all duration-300 ease-out"
-              style={{ 
-                height: `${scrollProgress}%`,
-                boxShadow: "0 0 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-              }}
-            />
-          </div>
+        
+        {/* Calendar Display */}
+        <div className="hidden lg:block absolute -right-24 top-0 w-16 h-16 bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentDay}
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-full flex items-center justify-center"
+            >
+              <div className="text-center">
+                <div className="text-xs text-custom-cyan/50 mb-1">DAY</div>
+                <div className="text-2xl font-bold text-custom-cyan">{currentDay}</div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
+        <div className="space-y-6 relative">
           {steps.map((step, index) => (
             <Card
               key={index}
