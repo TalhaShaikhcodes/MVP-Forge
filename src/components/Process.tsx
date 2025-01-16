@@ -12,26 +12,33 @@ const Process = () => {
     const calculateProgress = () => {
       if (!sectionRef.current) return;
 
-      const sectionTop = sectionRef.current.offsetTop;
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const windowHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
-
-      const scrollIntoSection = scrollPosition - sectionTop + windowHeight;
-      const progress = Math.min(
-        Math.max(scrollIntoSection / sectionHeight, 0),
-        1
-      ) * 100;
-
-      setScrollProgress(progress);
+      const section = sectionRef.current;
+      const sectionRect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
       
-      // Calculate current day based on scroll progress (1-14)
-      const day = Math.min(Math.max(Math.ceil((progress / 100) * 14), 1), 14);
-      setCurrentDay(day);
+      // Calculate how much of the section is visible
+      const visibleHeight = Math.min(
+        viewportHeight,
+        Math.max(0, Math.min(sectionRect.bottom, viewportHeight) - Math.max(sectionRect.top, 0))
+      );
+
+      // Calculate progress based on visible portion
+      const totalHeight = section.offsetHeight;
+      const progress = (visibleHeight / totalHeight) * 100;
+      
+      // Only update progress when section is in view
+      if (sectionRect.top <= viewportHeight && sectionRect.bottom >= 0) {
+        setScrollProgress(progress);
+        
+        // Calculate current day (1-14) based on scroll progress
+        const adjustedProgress = Math.max(0, Math.min(100, progress));
+        const day = Math.max(1, Math.min(14, Math.ceil((adjustedProgress / 100) * 14)));
+        setCurrentDay(day);
+      }
     };
 
     window.addEventListener("scroll", calculateProgress);
-    calculateProgress();
+    calculateProgress(); // Initial calculation
 
     return () => window.removeEventListener("scroll", calculateProgress);
   }, []);
@@ -65,7 +72,7 @@ const Process = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative">
+    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-screen">
       <div className="max-w-3xl mx-auto relative">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
@@ -105,15 +112,15 @@ const Process = () => {
           </div>
 
           {/* Calendar Display */}
-          <div className="hidden lg:block sticky top-1/2 -translate-y-1/2 h-fit w-32">
+          <div className="hidden lg:block sticky top-1/3 h-fit w-32">
             <div className="bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden p-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentDay}
-                  initial={{ y: 50, opacity: 0 }}
+                  initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="w-full flex flex-col items-center justify-center"
                 >
                   <div className="text-center">
