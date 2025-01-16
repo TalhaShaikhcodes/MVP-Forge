@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Boxes } from "@/components/ui/background-boxes";
 
 const Footer = () => {
   return (
-    <footer className="relative py-20 px-6 bg-custom-black border-t border-gray-800">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
+    <footer className="relative py-20 px-6 bg-slate-900 border-t border-gray-800 overflow-hidden">
+      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+      <Boxes />
+      
+      <div className="max-w-4xl mx-auto text-center space-y-8 relative z-30">
         <h2 className="text-4xl md:text-5xl font-bold gradient-text animate-glow-pulse">
           Ready to Build Your Dream MVP?
         </h2>
