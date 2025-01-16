@@ -7,29 +7,26 @@ const Process = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentDay, setCurrentDay] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const calculateProgress = () => {
-      if (!sectionRef.current || !cardsRef.current) return;
+      if (!sectionRef.current) return;
 
-      const cardsTop = cardsRef.current.offsetTop;
-      const cardsHeight = cardsRef.current.offsetHeight;
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
       const windowHeight = window.innerHeight;
       const scrollPosition = window.scrollY;
 
-      // Calculate progress based on cards container position
-      const scrollIntoCards = scrollPosition + windowHeight - cardsTop;
+      const scrollIntoSection = scrollPosition - sectionTop + windowHeight;
       const progress = Math.min(
-        Math.max(scrollIntoCards / cardsHeight, 0),
+        Math.max(scrollIntoSection / sectionHeight, 0),
         1
       ) * 100;
 
       setScrollProgress(progress);
       
-      // Smooth day calculation with decimal points for smoother transitions
-      const rawDay = (progress / 100) * 14;
-      const day = Math.min(Math.max(Math.ceil(rawDay), 1), 14);
+      // Calculate current day based on scroll progress (1-14)
+      const day = Math.min(Math.max(Math.ceil((progress / 100) * 14), 1), 14);
       setCurrentDay(day);
     };
 
@@ -75,7 +72,7 @@ const Process = () => {
         </h2>
         
         <div className="flex gap-8">
-          <div ref={cardsRef} className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6">
             {steps.map((step, index) => (
               <Card
                 key={index}
@@ -116,7 +113,7 @@ const Process = () => {
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -50, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.3 }}
                   className="w-full flex flex-col items-center justify-center"
                 >
                   <div className="text-center">
