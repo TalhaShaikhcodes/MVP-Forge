@@ -20,21 +20,21 @@ const Process = () => {
 
       // Calculate progress based on cards container position
       const scrollIntoCards = scrollPosition + windowHeight - cardsTop;
-      const progress = Math.min(
-        Math.max(scrollIntoCards / cardsHeight, 0),
-        1
-      ) * 100;
-
-      setScrollProgress(progress);
+      let progress = (scrollIntoCards / cardsHeight);
       
-      // Smooth day calculation with decimal points for smoother transitions
-      const rawDay = (progress / 100) * 14;
-      const day = Math.min(Math.max(Math.ceil(rawDay), 1), 14);
-      setCurrentDay(day);
+      // Clamp progress between 0 and 1
+      progress = Math.min(Math.max(progress, 0), 1);
+      setScrollProgress(progress * 100);
+      
+      // Calculate day based on progress
+      // We want days to change as we scroll through the cards
+      // Map progress 0-1 to days 1-14
+      const day = Math.floor(progress * 13) + 1; // +1 because we start at day 1
+      setCurrentDay(Math.min(Math.max(day, 1), 14));
     };
 
     window.addEventListener("scroll", calculateProgress);
-    calculateProgress();
+    calculateProgress(); // Initial calculation
 
     return () => window.removeEventListener("scroll", calculateProgress);
   }, []);
