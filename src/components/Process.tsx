@@ -71,56 +71,60 @@ const Process = () => {
           Our Process
         </h2>
         
-        {/* Calendar Display */}
-        <div className="fixed top-1/2 -translate-y-1/2 right-8 w-32 h-40 bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentDay}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -50, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-full h-full flex flex-col items-center justify-center"
-            >
-              <div className="text-center">
-                <div className="text-sm text-custom-cyan/50 mb-2">DAY</div>
-                <div className="text-5xl font-bold text-custom-cyan">{currentDay}</div>
-                <div className="text-sm text-custom-cyan/50 mt-2">of 14</div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="space-y-6 relative">
-          {steps.map((step, index) => (
-            <Card
-              key={index}
-              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden min-h-[200px]"
-            >
-              <BorderTrail
-                className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
-                size={120}
-                style={{
-                  boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-                }}
-              />
-              <div className="p-8 relative z-10">
-                <div className="flex items-start gap-4">
-                  <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
-                    {step.number}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-glow">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                      {step.description}
-                    </p>
+        <div className="flex gap-8">
+          <div className="flex-1 space-y-6">
+            {steps.map((step, index) => (
+              <Card
+                key={index}
+                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden min-h-[200px]"
+              >
+                <BorderTrail
+                  className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
+                  size={120}
+                  style={{
+                    boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
+                  }}
+                />
+                <div className="p-8 relative z-10">
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
+                      {step.number}
+                    </span>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-glow">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
+
+          {/* Calendar Display */}
+          <div className="hidden lg:block sticky top-1/2 -translate-y-1/2 h-fit w-32">
+            <div className="bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden p-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentDay}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -50, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full flex flex-col items-center justify-center"
+                >
+                  <div className="text-center">
+                    <div className="text-sm text-custom-cyan/50 mb-2">DAY</div>
+                    <div className="text-5xl font-bold text-custom-cyan">{currentDay}</div>
+                    <div className="text-sm text-custom-cyan/50 mt-2">of 14</div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
     </section>
