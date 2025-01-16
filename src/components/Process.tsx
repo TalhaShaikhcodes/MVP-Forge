@@ -7,34 +7,39 @@ const Process = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentDay, setCurrentDay] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
+  const lastDayRef = useRef(1);
 
   useEffect(() => {
     const calculateProgress = () => {
       if (!sectionRef.current) return;
 
       const section = sectionRef.current;
-      const sectionRect = section.getBoundingClientRect();
+      const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate how much of the section is visible
-      const visibleHeight = Math.min(
-        viewportHeight,
-        Math.max(0, Math.min(sectionRect.bottom, viewportHeight) - Math.max(sectionRect.top, 0))
-      );
-
-      // Calculate progress based on visible portion
-      const totalHeight = section.offsetHeight;
-      const progress = (visibleHeight / totalHeight) * 100;
+      // Calculate section visibility percentage
+      const visibleTop = Math.max(0, rect.top);
+      const visibleBottom = Math.min(viewportHeight, rect.bottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const totalVisibleHeight = rect.height;
       
-      // Only update progress when section is in view
-      if (sectionRect.top <= viewportHeight && sectionRect.bottom >= 0) {
-        setScrollProgress(progress);
-        
-        // Calculate current day (1-14) based on scroll progress
-        const adjustedProgress = Math.max(0, Math.min(100, progress));
-        const day = Math.max(1, Math.min(14, Math.ceil((adjustedProgress / 100) * 14)));
-        setCurrentDay(day);
+      // Calculate progress as percentage through section
+      let progress = ((viewportHeight - visibleTop) / (viewportHeight + totalVisibleHeight)) * 100;
+      progress = Math.max(0, Math.min(100, progress));
+      
+      setScrollProgress(progress);
+      
+      // Calculate day based on progress, ensuring sequential progression
+      const targetDay = Math.max(1, Math.min(14, Math.ceil((progress / 100) * 14)));
+      
+      // Ensure days only increment/decrement by 1
+      if (targetDay > lastDayRef.current) {
+        setCurrentDay(lastDayRef.current + 1);
+      } else if (targetDay < lastDayRef.current) {
+        setCurrentDay(lastDayRef.current - 1);
       }
+      
+      lastDayRef.current = targetDay;
     };
 
     window.addEventListener("scroll", calculateProgress);
