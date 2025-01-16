@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import WhySection from "@/components/Why";
 import MyWork from "@/components/MyWork";
 import Process from "@/components/Process";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <WhySection />
       <MyWork />
       <Process />
+      <Footer />
     </main>
   );
 };
