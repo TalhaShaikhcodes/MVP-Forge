@@ -17,17 +17,18 @@ const Process = () => {
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate section visibility percentage
+      // Calculate progress based on section position relative to viewport
       const sectionTop = rect.top;
       const sectionHeight = rect.height;
+      const scrolledDistance = viewportHeight - sectionTop;
       
-      // Calculate progress based on how far we've scrolled through the section
-      let progress = ((viewportHeight - sectionTop) / (sectionHeight)) * 100;
+      // Adjust the divisor to ensure we reach 100% before the bottom
+      let progress = (scrolledDistance / (sectionHeight - viewportHeight/2)) * 100;
       progress = Math.max(0, Math.min(100, progress));
       
       setScrollProgress(progress);
       
-      // Calculate target day (1-14) based on progress through the section
+      // Calculate target day (1-14) based on progress
       const targetDay = Math.max(1, Math.min(14, Math.round((progress / 100) * 14)));
       
       // Ensure days only increment/decrement by 1 for smooth transitions
@@ -75,7 +76,7 @@ const Process = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-[150vh]">
+    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-[200vh]">
       <div className="max-w-3xl mx-auto relative">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
