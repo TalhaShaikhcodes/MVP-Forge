@@ -18,25 +18,23 @@ const Process = () => {
       const viewportHeight = window.innerHeight;
       
       // Calculate section visibility percentage
-      const visibleTop = Math.max(0, rect.top);
-      const visibleBottom = Math.min(viewportHeight, rect.bottom);
-      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-      const totalVisibleHeight = rect.height;
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
       
-      // Calculate progress as percentage through section
-      let progress = ((viewportHeight - visibleTop) / (viewportHeight + totalVisibleHeight)) * 100;
+      // Calculate progress based on how far we've scrolled through the section
+      let progress = ((viewportHeight - sectionTop) / (sectionHeight)) * 100;
       progress = Math.max(0, Math.min(100, progress));
       
       setScrollProgress(progress);
       
-      // Calculate day based on progress, ensuring sequential progression
-      const targetDay = Math.max(1, Math.min(14, Math.ceil((progress / 100) * 14)));
+      // Calculate target day (1-14) based on progress through the section
+      const targetDay = Math.max(1, Math.min(14, Math.round((progress / 100) * 14)));
       
-      // Ensure days only increment/decrement by 1
+      // Ensure days only increment/decrement by 1 for smooth transitions
       if (targetDay > lastDayRef.current) {
-        setCurrentDay(lastDayRef.current + 1);
+        setCurrentDay(prev => Math.min(prev + 1, 14));
       } else if (targetDay < lastDayRef.current) {
-        setCurrentDay(lastDayRef.current - 1);
+        setCurrentDay(prev => Math.max(prev - 1, 1));
       }
       
       lastDayRef.current = targetDay;
@@ -77,7 +75,7 @@ const Process = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-screen">
+    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-[150vh]">
       <div className="max-w-3xl mx-auto relative">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process
