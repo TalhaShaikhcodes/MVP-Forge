@@ -1,13 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { BorderTrail } from "@/components/ui/border-trail";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Process = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentDay, setCurrentDay] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
-  const lastDayRef = useRef(1);
 
   useEffect(() => {
     const calculateProgress = () => {
@@ -17,28 +14,14 @@ const Process = () => {
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Calculate progress based on section position relative to viewport
       const sectionTop = rect.top;
       const sectionHeight = rect.height;
       const scrolledDistance = viewportHeight - sectionTop;
       
-      // Adjust the divisor to ensure we reach 100% before the bottom
       let progress = (scrolledDistance / (sectionHeight - viewportHeight/2)) * 100;
       progress = Math.max(0, Math.min(100, progress));
       
       setScrollProgress(progress);
-      
-      // Calculate target day (1-14) based on progress
-      const targetDay = Math.max(1, Math.min(14, Math.round((progress / 100) * 14)));
-      
-      // Ensure days only increment/decrement by 1 for smooth transitions
-      if (targetDay > lastDayRef.current) {
-        setCurrentDay(prev => Math.min(prev + 1, 14));
-      } else if (targetDay < lastDayRef.current) {
-        setCurrentDay(prev => Math.max(prev - 1, 1));
-      }
-      
-      lastDayRef.current = targetDay;
     };
 
     window.addEventListener("scroll", calculateProgress);
@@ -115,25 +98,16 @@ const Process = () => {
             ))}
           </div>
 
-          {/* Calendar Display */}
-          <div className="hidden lg:block sticky top-1/3 h-fit w-32">
-            <div className="bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden p-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentDay}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -20, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-full flex flex-col items-center justify-center"
-                >
-                  <div className="text-center">
-                    <div className="text-sm text-custom-cyan/50 mb-2">DAY</div>
-                    <div className="text-5xl font-bold text-custom-cyan">{currentDay}</div>
-                    <div className="text-sm text-custom-cyan/50 mt-2">of 14</div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+          {/* Progress Bar */}
+          <div className="hidden lg:block sticky top-1/3 h-fit w-4">
+            <div className="h-[300px] w-4 bg-black/50 border border-custom-cyan/20 rounded-full overflow-hidden">
+              <div 
+                className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo transition-all duration-300 rounded-full animate-glow-pulse"
+                style={{ 
+                  height: `${scrollProgress}%`,
+                  boxShadow: "0 0 20px theme('colors.custom.cyan')",
+                }}
+              />
             </div>
           </div>
         </div>
