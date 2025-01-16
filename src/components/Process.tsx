@@ -13,32 +13,28 @@ const Process = () => {
     const calculateProgress = () => {
       if (!sectionRef.current || !cardsRef.current) return;
 
-      const cardsRect = cardsRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+      const cardsTop = cardsRef.current.offsetTop;
+      const cardsHeight = cardsRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+
+      // Calculate progress based on cards container position
+      const scrollIntoCards = scrollPosition + windowHeight - cardsTop;
+      const progress = Math.min(
+        Math.max(scrollIntoCards / cardsHeight, 0),
+        1
+      ) * 100;
+
+      setScrollProgress(progress);
       
-      // Calculate how far we've scrolled into the cards section
-      // Start when the cards top edge hits the top of the viewport
-      const startTrigger = cardsRect.top;
-      // End when the cards bottom edge hits the bottom of the viewport
-      const endTrigger = cardsRect.bottom - viewportHeight;
-      
-      // Calculate progress as a value between 0 and 1
-      let progress = 0;
-      if (startTrigger <= 0) {
-        progress = Math.abs(startTrigger) / endTrigger;
-      }
-      
-      // Clamp progress between 0 and 1
-      progress = Math.min(Math.max(progress, 0), 1);
-      setScrollProgress(progress * 100);
-      
-      // Calculate day based on progress
-      const day = Math.floor(progress * 13) + 1;
-      setCurrentDay(Math.min(Math.max(day, 1), 14));
+      // Smooth day calculation with decimal points for smoother transitions
+      const rawDay = (progress / 100) * 14;
+      const day = Math.min(Math.max(Math.ceil(rawDay), 1), 14);
+      setCurrentDay(day);
     };
 
     window.addEventListener("scroll", calculateProgress);
-    calculateProgress(); // Initial calculation
+    calculateProgress();
 
     return () => window.removeEventListener("scroll", calculateProgress);
   }, []);
