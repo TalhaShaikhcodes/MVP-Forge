@@ -72,7 +72,7 @@ const Process = () => {
         </h2>
         
         {/* Calendar Display */}
-        <div className="hidden lg:block absolute -right-24 top-0 w-16 h-16 bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden">
+        <div className="fixed top-1/2 -translate-y-1/2 right-8 w-32 h-40 bg-black/50 border border-custom-cyan/20 rounded-lg overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentDay}
@@ -80,11 +80,12 @@ const Process = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -50, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="w-full h-full flex items-center justify-center"
+              className="w-full h-full flex flex-col items-center justify-center"
             >
               <div className="text-center">
-                <div className="text-xs text-custom-cyan/50 mb-1">DAY</div>
-                <div className="text-2xl font-bold text-custom-cyan">{currentDay}</div>
+                <div className="text-sm text-custom-cyan/50 mb-2">DAY</div>
+                <div className="text-5xl font-bold text-custom-cyan">{currentDay}</div>
+                <div className="text-sm text-custom-cyan/50 mt-2">of 14</div>
               </div>
             </motion.div>
           </AnimatePresence>
