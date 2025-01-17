@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FileText, Users, MessageSquare, PhoneCall } from "lucide-react";
+import { FileText, Users, MessageSquare, Calendar } from "lucide-react";
 import { AnimeNavBar } from "@/components/ui/anime-navbar";
 import Index from "./pages/Index";
 
@@ -28,8 +28,8 @@ const navItems = [
   },
   {
     name: "Book a Call",
-    url: "#book",
-    icon: PhoneCall,
+    url: "#hero",
+    icon: Calendar,
   },
 ];
 

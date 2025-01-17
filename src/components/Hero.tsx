@@ -4,7 +4,7 @@ import { Calendar } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient effects */}
       <div className="absolute inset-0 bg-gradient-radial from-custom-cyan/20 via-transparent to-transparent animate-glow-pulse" />
       <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-custom-blue/20 rounded-full blur-3xl animate-glow-pulse" />
