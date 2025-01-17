@@ -37,12 +37,21 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex flex-col items-center gap-3"
           >
             <Button 
               className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-opacity duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow"
             >
               Get Started
             </Button>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="text-sm text-gray-400"
+            >
+              No commitment required. Let's explore your idea together.
+            </motion.p>
           </motion.div>
         </motion.div>
       </div>
