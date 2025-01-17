@@ -1,6 +1,7 @@
 import { Rocket, DollarSign, Target, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BorderTrail } from "@/components/ui/border-trail";
+import { motion } from "framer-motion";
 
 const WhySection = () => {
   const features = [
@@ -33,40 +34,53 @@ const WhySection = () => {
   return (
     <section className="py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text"
+        >
           Why Choose Us
-        </h2>
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <BorderTrail
-                className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
-                size={120}
-                style={{
-                  boxShadow:
-                    "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-                }}
-              />
-              <CardContent className="p-6">
-                <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 p-3 rounded-full border border-custom-cyan/20 group-hover:border-custom-cyan transition-colors">
-                    <feature.icon
-                      className="w-8 h-8 text-custom-cyan group-hover:text-white transition-colors"
-                      strokeWidth={1.5}
-                    />
+              <Card
+                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 group"
+              >
+                <BorderTrail
+                  className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
+                  size={120}
+                  style={{
+                    boxShadow:
+                      "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
+                  }}
+                />
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-4 p-3 rounded-full border border-custom-cyan/20 group-hover:border-custom-cyan transition-colors">
+                      <feature.icon
+                        className="w-8 h-8 text-custom-cyan group-hover:text-white transition-colors"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-glow">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                    {feature.description}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
