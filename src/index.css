@@ -45,6 +45,18 @@
   -webkit-text-fill-color: transparent;
 }
 
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @keyframes border-follow {
   0% {
     left: 0;
