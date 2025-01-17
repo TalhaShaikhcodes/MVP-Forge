@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -40,9 +41,10 @@ const Hero = () => {
             className="flex flex-col items-center gap-3"
           >
             <Button 
-              className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-opacity duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow"
+              className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-all duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow hover:scale-105 hover:shadow-lg flex items-center gap-2"
             >
-              Get Started
+              <Calendar className="w-5 h-5" />
+              Book a Call
             </Button>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
