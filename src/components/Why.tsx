@@ -15,7 +15,7 @@ const WhySection = () => {
       icon: DollarSign,
       title: "Affordable Innovation",
       description:
-        "Launching an idea shouldn't cost a fortune. By leveraging AI and no-code technologies, we make top-tier MVPs accessible to entrepreneurs and businesses, saving you time, money, and effort.",
+        "Launching an idea shouldn't cost a fortune. By leveraging AI and no-code technologies, we make top-tier MVPs accessible to entrepreneurs and businesses.",
     },
     {
       icon: Target,
@@ -51,9 +51,10 @@ const WhySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="h-full"
             >
               <Card
-                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 group"
+                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 transform hover:scale-105 group h-full flex flex-col"
               >
                 <BorderTrail
                   className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
@@ -63,8 +64,8 @@ const WhySection = () => {
                       "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
                   }}
                 />
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
+                <CardContent className="p-6 flex flex-col flex-grow">
+                  <div className="flex flex-col items-center text-center h-full">
                     <div className="mb-4 p-3 rounded-full border border-custom-cyan/20 group-hover:border-custom-cyan transition-colors">
                       <feature.icon
                         className="w-8 h-8 text-custom-cyan group-hover:text-white transition-colors"
