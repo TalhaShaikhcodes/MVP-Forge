@@ -9,6 +9,7 @@ interface NavItem {
   name: string
   url: string
   icon: LucideIcon
+  external?: boolean
 }
 
 interface NavBarProps {
@@ -37,6 +38,21 @@ export function AnimeNavBar({ items, className, defaultActive = "How it works" }
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  const handleClick = (item: NavItem, e: React.MouseEvent) => {
+    e.preventDefault()
+    setActiveTab(item.name)
+
+    if (item.external) {
+      window.open(item.url, '_blank')
+      return
+    }
+
+    const element = document.querySelector(item.url)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   if (!mounted) return null
 
   return (
@@ -60,7 +76,7 @@ export function AnimeNavBar({ items, className, defaultActive = "How it works" }
             return (
               <button
                 key={item.name}
-                onClick={() => setActiveTab(item.name)}
+                onClick={(e) => handleClick(item, e)}
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(

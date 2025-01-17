@@ -59,7 +59,7 @@ const Process = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-[200vh]">
+    <section id="process" ref={sectionRef} className="py-20 px-4 md:px-8 relative min-h-[200vh]">
       <div className="max-w-3xl mx-auto relative">
         <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">
           Our Process

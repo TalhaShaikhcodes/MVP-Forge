@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 const navItems = [
   {
     name: "How it works",
-    url: "#how-it-works",
+    url: "#process",
     icon: FileText,
   },
   {
@@ -22,8 +22,9 @@ const navItems = [
   },
   {
     name: "Connect on X",
-    url: "#connect",
+    url: "https://x.com/thetalhashaik",
     icon: MessageSquare,
+    external: true,
   },
   {
     name: "Book a Call",
