@@ -3,10 +3,17 @@ import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import { useEffect } from "react";
 
+// Extend Window interface to include Cal
+declare global {
+  interface Window {
+    Cal?: any;
+  }
+}
+
 const Hero = () => {
   useEffect(() => {
     // Initialize Cal.com
-    (function (C, A, L) {
+    (function (C: any, A: string, L: string) {
       let p = function (a: any, ar: any) {
         a.q.push(ar);
       };
@@ -40,8 +47,8 @@ const Hero = () => {
     })(window, "https://app.cal.com/embed/embed.js", "init");
 
     // Initialize with your configuration
-    (window as any).Cal("init", "30min", { origin: "https://cal.com" });
-    (window as any).Cal.ns["30min"]("ui", {
+    window.Cal?.("init", "30min", { origin: "https://cal.com" });
+    window.Cal?.ns["30min"]("ui", {
       theme: "light",
       cssVarsPerTheme: {
         light: { "cal-brand": "#3B82F6" },
