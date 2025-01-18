@@ -1,24 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { GridBackground } from "@/components/ui/glowing-card";
 import { motion } from "framer-motion";
+import { GridBackground } from "@/components/ui/glowing-card";
 
 const MyWork = () => {
   const projects = [
     {
-      title: "Modern Web Application",
-      description:
-        "A full-stack web application built with React and Node.js. Features include real-time updates, user authentication, and responsive design.",
-      tags: ["React", "Node.js", "TypeScript", "Tailwind CSS"],
-      imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80",
-      imageAlt: "Modern web application interface on laptop",
+      title: "WallofPeers",
+      description: "A responsive full stack webapp, which contains a wall featuring students of a classroom and also their class memories and other relevant stuff.",
+      tags: ["React vite", "Supabase Auth & Database", "Typescript", "Tailwind CSS"],
+      imageUrl: "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3",
+      imageAlt: "WallofPeers project preview",
     },
     {
-      title: "E-commerce Platform",
-      description:
-        "A scalable e-commerce solution with advanced features like cart management, payment integration, and inventory tracking.",
-      tags: ["Next.js", "MongoDB", "Stripe", "Redux"],
-      imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80",
-      imageAlt: "E-commerce platform dashboard",
+      title: "CineTrack",
+      description: "A responsive full stack webapp, which is basically Goodreads but for movies & shows, where users can track what they are watching and also have social connection, TMDB API is integrated into webapp which fetches & displays all movies and socials content.",
+      tags: ["React vite", "Supabase Auth & Database", "Typescript", "Tailwind CSS", "TMDB API"],
+      imageUrl: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
+      imageAlt: "CineTrack project preview",
     },
   ];
 
