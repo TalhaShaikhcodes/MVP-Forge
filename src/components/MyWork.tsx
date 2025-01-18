@@ -7,14 +7,14 @@ const MyWork = () => {
       title: "WallofPeers",
       description: "A responsive full stack webapp, which contains a wall featuring students of a classroom and also their class memories and other relevant stuff.",
       tags: ["React vite", "Supabase Auth & Database", "Typescript", "Tailwind CSS"],
-      imageUrl: "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3",
+      imageUrl: "/lovable-uploads/ba0e1e02-d809-4abc-a23c-e4085efeb08f.png",
       imageAlt: "WallofPeers project preview",
     },
     {
       title: "CineTrack",
       description: "A responsive full stack webapp, which is basically Goodreads but for movies & shows, where users can track what they are watching and also have social connection, TMDB API is integrated into webapp which fetches & displays all movies and socials content.",
       tags: ["React vite", "Supabase Auth & Database", "Typescript", "Tailwind CSS", "TMDB API"],
-      imageUrl: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
+      imageUrl: "/lovable-uploads/f1113da6-bf08-4b5a-8c27-b5f00eec7b98.png",
       imageAlt: "CineTrack project preview",
     },
   ];
