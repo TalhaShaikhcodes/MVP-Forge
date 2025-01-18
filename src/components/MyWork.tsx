@@ -39,14 +39,15 @@ const MyWork = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="h-full"
             >
               <GridBackground
                 title={project.title}
                 description={project.description}
                 showAvailability={false}
-                className="group transform hover:scale-105 transition-all duration-300"
+                className="group transform hover:scale-105 transition-all duration-300 h-full flex flex-col"
               >
-                <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                <div className="relative h-64 mb-4 rounded-lg overflow-hidden">
                   <img
                     src={project.imageUrl}
                     alt={project.imageAlt}
