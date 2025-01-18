@@ -14,12 +14,12 @@ const Hero = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="absolute top-8 left-8 flex items-center gap-2 text-xl font-bold"
+        className="absolute top-8 left-8 flex items-center gap-3 text-3xl font-bold"
       >
         <img 
           src="/lovable-uploads/960ca759-05d8-41bb-9f5d-b302b2c04c2c.png" 
           alt="MVP Forge Icon" 
-          className="w-8 h-8"
+          className="w-12 h-12"
         />
         <span className="gradient-text">MVP Forge</span>
       </motion.div>
