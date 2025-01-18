@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { LucideIcon } from "lucide-react"
+import { LucideIcon, Twitter } from "lucide-react" // Added Twitter import
 import { cn } from "@/lib/utils"
-import { XIcon } from "./x-icon"
 
 interface NavItem {
   name: string
@@ -70,7 +69,7 @@ export function AnimeNavBar({ items, className, defaultActive = "How it works" }
           }}
         >
           {items.map((item) => {
-            const Icon = item.external && item.name === "Connect on X" ? XIcon : item.icon
+            const Icon = item.external && item.name === "Connect on X" ? Twitter : item.icon
             const isActive = activeTab === item.name
             const isHovered = hoveredTab === item.name
 
