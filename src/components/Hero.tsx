@@ -1,8 +1,57 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
+import { useEffect } from "react";
 
 const Hero = () => {
+  useEffect(() => {
+    // Initialize Cal.com
+    (function (C, A, L) {
+      let p = function (a: any, ar: any) {
+        a.q.push(ar);
+      };
+      let d = C.document;
+      C.Cal =
+        C.Cal ||
+        function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () {
+              p(api, arguments);
+            };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    // Initialize with your configuration
+    (window as any).Cal("init", "30min", { origin: "https://cal.com" });
+    (window as any).Cal.ns["30min"]("ui", {
+      theme: "light",
+      cssVarsPerTheme: {
+        light: { "cal-brand": "#3B82F6" },
+        dark: { "cal-brand": "#3B82F6" },
+      },
+      hideEventTypeDetails: false,
+      layout: "month_view",
+    });
+  }, []);
+
   return (
     <div id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient effects */}
@@ -56,6 +105,9 @@ const Hero = () => {
             className="flex flex-col items-center gap-3"
           >
             <Button 
+              data-cal-link="talha-shaikh/30min"
+              data-cal-namespace="30min"
+              data-cal-config='{"layout":"month_view","theme":"light"}'
               className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo hover:opacity-90 transition-all duration-300 text-white px-8 py-6 rounded-lg text-lg font-semibold glow hover:scale-105 hover:shadow-lg flex items-center gap-2"
             >
               <Calendar className="w-5 h-5" />
