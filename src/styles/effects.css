@@ -1,0 +1,13 @@
+.glow {
+  box-shadow: 0 0 15px theme('colors.custom.cyan');
+}
+
+.text-glow {
+  text-shadow: 0 0 5px theme('colors.custom.cyan');
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #06B6D4, #3B82F6, #6366F1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

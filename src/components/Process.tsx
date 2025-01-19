@@ -1,6 +1,6 @@
-import { Card } from "@/components/ui/card";
-import { BorderTrail } from "@/components/ui/border-trail";
 import { useEffect, useRef, useState } from "react";
+import { ProcessStep } from "./process/ProcessStep";
+import { ProgressBar } from "./process/ProgressBar";
 
 const Process = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -25,7 +25,7 @@ const Process = () => {
     };
 
     window.addEventListener("scroll", calculateProgress);
-    calculateProgress(); // Initial calculation
+    calculateProgress();
 
     return () => window.removeEventListener("scroll", calculateProgress);
   }, []);
@@ -68,48 +68,10 @@ const Process = () => {
         <div className="flex gap-8">
           <div className="flex-1 space-y-6">
             {steps.map((step, index) => (
-              <Card
-                key={index}
-                className="relative bg-black/50 border border-custom-cyan/20 hover:border-custom-cyan transition-all duration-300 group overflow-hidden min-h-[200px]"
-              >
-                <BorderTrail
-                  className="bg-gradient-to-r from-custom-cyan via-custom-blue to-custom-indigo"
-                  size={120}
-                  style={{
-                    boxShadow: "0px 0px 30px 15px rgba(6, 182, 212, 0.3), 0 0 50px 30px rgba(59, 130, 246, 0.2), 0 0 70px 45px rgba(99, 102, 241, 0.1)",
-                  }}
-                />
-                <div className="p-8 relative z-10">
-                  <div className="flex items-start gap-4">
-                    <span className="text-4xl font-bold text-custom-cyan opacity-50 font-mono">
-                      {step.number}
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-glow">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              <ProcessStep key={index} {...step} />
             ))}
           </div>
-
-          {/* Progress Bar */}
-          <div className="hidden lg:block sticky top-1/3 h-fit w-6">
-            <div className="h-[400px] w-6 bg-black/50 border border-custom-cyan/20 rounded-full overflow-hidden">
-              <div 
-                className="w-full bg-gradient-to-b from-custom-cyan via-custom-blue to-custom-indigo transition-all duration-300 rounded-full animate-glow-pulse"
-                style={{ 
-                  height: `${scrollProgress}%`,
-                  boxShadow: "0 0 40px 10px theme('colors.custom.cyan'), 0 0 60px 20px theme('colors.custom.blue'), 0 0 80px 30px theme('colors.custom.indigo')",
-                }}
-              />
-            </div>
-          </div>
+          <ProgressBar progress={scrollProgress} />
         </div>
       </div>
     </section>
