@@ -41,7 +41,7 @@ const WhySection = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
         >
-          Why <span className="bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#F97316] bg-clip-text text-transparent">MVP Forge</span>
+          Why <span className="bg-gradient-to-r from-[#8B5CF6] via-[#D946EF] to-[#F97316] bg-clip-text text-transparent">MVP Forge</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
