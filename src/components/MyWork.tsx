@@ -29,7 +29,7 @@ const MyWork = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text"
         >
-          My Work
+          Work
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
