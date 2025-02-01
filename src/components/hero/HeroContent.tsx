@@ -16,8 +16,8 @@ export const HeroContent = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text"
       >
-        First Version of Your
-        <span className="block text-glow">Dream In 2 weeks</span>
+        Idea To MVP
+        <span className="block text-glow">In 2 weeks</span>
       </motion.h1>
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
