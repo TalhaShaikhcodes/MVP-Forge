@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { ProcessStep } from "./process/ProcessStep";
 import { ProgressBar } from "./process/ProgressBar";
@@ -43,7 +44,7 @@ const Process = () => {
     },
     {
       title: "Rapid Build Sprint",
-      description: "Once aligned, we jump into execution. Development starts immediately, and within just 14 days, your MVP takes shape—delivered with regular progress updates to keep you in control.",
+      description: "Once aligned, we jump into execution. Development starts immediately, and within just 4 days, your MVP takes shape—delivered with regular progress updates to keep you in control.",
       number: "03"
     },
     {

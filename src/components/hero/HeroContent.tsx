@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
@@ -17,7 +18,7 @@ export const HeroContent = () => {
         className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text"
       >
         Idea To MVP
-        <span className="block text-glow">In 2 weeks</span>
+        <span className="block text-glow">In 4 days</span>
       </motion.h1>
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
@@ -25,7 +26,7 @@ export const HeroContent = () => {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
       >
-        While others are still planning, your fully functional MVP will be live and gathering real user feedback. From wireframes to working product in just 2 weeks.
+        While others are still planning, your fully functional MVP will be live and gathering real user feedback. From wireframes to working product in just 4 days.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
